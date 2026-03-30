@@ -1,4 +1,4 @@
-/* ── DESIGN TOKENS ──────────────────────────────────────────────── */
+/* DESIGN TOKENS */
 :root {
   --sage:       #4a7c6f;
   --sage-light: #6b9e91;
@@ -23,14 +23,14 @@
   --tr: .16s ease;
 }
 
-/* ── RESET ──────────────────────────────────────────────────────── */
+/* RESET */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: var(--font-b); background: var(--surface); color: var(--ink); font-size: 16px; line-height: 1.6; min-height: 100vh; }
 a { color: inherit; text-decoration: none; }
 button { font-family: var(--font-b); cursor: pointer; }
 
-/* ── NAV ────────────────────────────────────────────────────────── */
+/* NAV */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; height: 60px;
   background: rgba(247,249,248,.94); backdrop-filter: blur(10px);
@@ -44,7 +44,7 @@ button { font-family: var(--font-b); cursor: pointer; }
 .nav-links { display: flex; align-items: center; gap: 2px; position: absolute; left: 50%; transform: translateX(-50%); }
 .nav-actions { display: flex; align-items: center; gap: 8px; }
 
-/* ── BUTTONS ────────────────────────────────────────────────────── */
+/*  BUTTONS  */
 .btn { border: none; border-radius: var(--r-md); padding: 9px 20px; font-size: .88rem; font-weight: 500; transition: all var(--tr); display: inline-flex; align-items: center; justify-content: center; }
 .btn-primary { background: var(--sage); color: #fff; }
 .btn-primary:hover { background: var(--sage-deep); }
@@ -56,12 +56,12 @@ button { font-family: var(--font-b); cursor: pointer; }
 .btn-sm { padding: 7px 14px; font-size: .82rem; }
 .btn-full { width: 100%; padding: 12px; }
 
-/* ── VIEWS ──────────────────────────────────────────────────────── */
+/* VIEWS */
 .view { display: none; padding-top: 60px; min-height: 100vh; animation: fadeIn .2s ease; }
 .view.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
 
-/* ── HOME ───────────────────────────────────────────────────────── */
+/* HOME */
 .hero { max-width: 660px; margin: 0 auto; padding: 88px 28px 64px; text-align: center; }
 .hero-eyebrow { font-size: .72rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: var(--sage); margin-bottom: 16px; }
 .hero-title { font-family: var(--font-d); font-size: clamp(2.4rem, 5.5vw, 4rem); line-height: 1.07; letter-spacing: -.02em; margin-bottom: 20px; }
@@ -76,7 +76,7 @@ button { font-family: var(--font-b); cursor: pointer; }
 .step-card h3 { font-size: .94rem; font-weight: 600; margin-bottom: 6px; }
 .step-card p { font-size: .85rem; color: var(--ink-mute); }
 
-/* ── BROWSE ─────────────────────────────────────────────────────── */
+/* BROWSE */
 .browse-layout { display: grid; grid-template-columns: 240px 1fr; min-height: calc(100vh - 60px); }
 
 /* Filters */
@@ -107,7 +107,7 @@ button { font-family: var(--font-b); cursor: pointer; }
 .tcard-about { font-size: .85rem; color: var(--ink-mid); line-height: 1.62; margin-bottom: 14px; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .tcard-actions { display: flex; gap: 8px; }
 
-/* ── BOOKINGS ───────────────────────────────────────────────────── */
+/* BOOKINGS */
 .bookings-wrap { max-width: 620px; margin: 0 auto; padding: 44px 28px; }
 .bookings-wrap h1 { font-family: var(--font-d); font-size: 1.8rem; margin-bottom: 6px; }
 .bookings-note { font-size: .82rem; color: var(--ink-mute); margin-bottom: 28px; }
@@ -119,7 +119,7 @@ button { font-family: var(--font-b); cursor: pointer; }
 .empty-state { text-align: center; padding: 60px 0; color: var(--ink-mute); }
 .empty-state p { margin-bottom: 14px; }
 
-/* ── CHAT ───────────────────────────────────────────────────────── */
+/* CHAT */
 #view-chat .chat-layout { display: flex; flex-direction: column; height: calc(100vh - 60px); }
 .chat-head { display: flex; align-items: center; gap: 14px; padding: 12px 24px; background: var(--white); border-bottom: 1px solid var(--border); flex-shrink: 0; }
 .chat-head-info { font-weight: 500; flex: 1; font-size: .92rem; }
@@ -141,7 +141,7 @@ button { font-family: var(--font-b); cursor: pointer; }
 .chat-center code { display: block; background: var(--surface-2); padding: 11px 15px; border-radius: var(--r-sm); font-size: .82rem; border: 1px solid var(--border); text-align: left; margin: 8px 0; word-break: break-all; }
 .chat-system { text-align: center; font-size: .76rem; color: var(--ink-faint); padding: 4px 0; }
 
-/* ── MODAL ──────────────────────────────────────────────────────── */
+/*  MODAL */
 .modal-overlay { position: fixed; inset: 0; background: rgba(26,30,27,.42); backdrop-filter: blur(4px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 18px; }
 .modal-overlay.open { display: flex; }
 .modal { background: var(--white); border-radius: var(--r-xl); padding: 32px; max-width: 440px; width: 100%; position: relative; box-shadow: var(--sh-lg); animation: modalIn .18s ease; max-height: 90vh; overflow-y: auto; }
@@ -162,21 +162,21 @@ button { font-family: var(--font-b); cursor: pointer; }
 .time-slot.sel { border-color: var(--sage); background: var(--sage); color: #fff; }
 .form-error { padding: 9px 13px; background: #fdf0ef; color: var(--error); border-radius: var(--r-sm); font-size: .83rem; margin-bottom: 11px; border: 1px solid #f5c6c6; }
 
-/* ── NO RESULTS ─────────────────────────────────────────────────── */
+/* NO RESULTS */
 .no-results { text-align: center; padding: 60px 28px; color: var(--ink-mute); background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg); }
 .no-results p { margin-bottom: 14px; }
 
-/* ── TOAST ──────────────────────────────────────────────────────── */
+/* TOAST */
 .toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--ink); color: #fff; padding: 11px 22px; border-radius: var(--r-lg); font-size: .85rem; opacity: 0; transition: opacity .2s, transform .2s; z-index: 3000; pointer-events: none; white-space: nowrap; }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 .toast.success { background: var(--success); }
 .toast.error { background: var(--error); }
 
-/* ── SPINNER ────────────────────────────────────────────────────── */
+/* SPINNER */
 .spinner { width: 28px; height: 28px; border: 2.5px solid var(--border); border-top-color: var(--sage); border-radius: 50%; animation: spin .7s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ── RESPONSIVE ─────────────────────────────────────────────────── */
+/* RESPONSIVE */
 @media (max-width: 740px) {
   .browse-layout { grid-template-columns: 1fr; }
   .filters-panel { position: fixed; left: 0; top: 60px; bottom: 0; width: 260px; z-index: 500; transform: translateX(-100%); transition: transform .24s ease; box-shadow: var(--sh-lg); }
@@ -189,7 +189,7 @@ button { font-family: var(--font-b); cursor: pointer; }
   .nav-links { display: none; }
 }
 
-/* ── RESOURCES ──────────────────────────────────────────────────── */
+/* RESOURCES */
 .resources-wrap { max-width: 1100px; margin: 0 auto; padding: 44px 28px 64px; }
 .resources-hero { text-align: center; margin-bottom: 36px; }
 .resources-title { font-family: var(--font-d); font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.1; margin-bottom: 10px; }
