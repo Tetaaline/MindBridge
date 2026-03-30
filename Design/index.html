@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Connect with a licensed therapist from anywhere in Africa. Private, anonymous, and judgment-free online therapy." />
+  <title>MindBridge — Private Therapy, Online</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-logo" href="#" onclick="showView('home');return false;">
+    <span class="logo-mark"></span>MindBridge
+  </a>
+  <div class="nav-links">
+    <button class="btn btn-ghost btn-sm" onclick="showView('browse')">Find a Therapist</button>
+    <button class="btn btn-ghost btn-sm" onclick="showView('resources')">Resources</button>
+  </div>
+  <div class="nav-actions">
+    <button class="btn btn-ghost btn-sm" id="nav-bookings" onclick="showView('bookings')" style="display:none">My Bookings</button>
+    <button class="btn btn-ghost btn-sm" id="nav-logout" onclick="logout()" style="display:none">End Session</button>
+    <button class="btn btn-primary btn-sm" id="nav-start" onclick="startSession()">Start Anonymously</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<section id="view-home" class="view active">
+  <div class="hero">
+    <div class="hero-eyebrow">Private &middot; Safe &middot; Judgment-free</div>
+    <h1 class="hero-title">Therapy on your<br/><em>own terms</em></h1>
+    <p class="hero-sub">Connect with a licensed therapist from anywhere in Africa. No name required. No waiting room. Just genuine support when you need it most.</p>
+    <div class="hero-cta">
+      <button class="btn btn-primary btn-lg" onclick="startAndBrowse()">Find a Therapist</button>
+      <button class="btn btn-outline btn-lg" onclick="showView('browse')">Browse First</button>
+    </div>
+  </div>
+  <div class="how">
+    <h2 class="section-title">How it works</h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h3>Start anonymously</h3>
+        <p>No email, no name, no account. Your session is private from the first click.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h3>Find your match</h3>
+        <p>Browse therapists by specialization and the language you are most comfortable in.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h3>Book and connect</h3>
+        <p>Choose your session length, pick a time, and message your therapist directly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BROWSE -->
+<section id="view-browse" class="view">
+  <div class="browse-layout">
+    <aside class="filters-panel" id="filters-panel">
+      <div class="filters-header">
+        <h2>Filter</h2>
+        <button class="btn btn-ghost btn-sm" onclick="clearFilters()">Clear</button>
+      </div>
+      <div class="fg">
+        <label class="fl">Search</label>
+        <input type="text" id="fi-search" class="fi" placeholder="e.g. anxiety, grief..." oninput="debounce()" />
+      </div>
+      <div class="fg">
+        <label class="fl">Specialization</label>
+        <select id="fi-spec" class="fs" onchange="applyFilters()"><option value="">All</option></select>
+      </div>
+      <div class="fg">
+        <label class="fl">Language</label>
+        <select id="fi-lang" class="fs" onchange="applyFilters()">
+          <option value="">All languages</option>
+          <option>Kinyarwanda</option>
+          <option>English</option>
+          <option>French</option>
+          <option>Wolof</option>
+          <option>Twi</option>
+          <option>Zulu</option>
+          <option>Igbo</option>
+          <option>Xhosa</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label class="fl">Sort by</label>
+        <select id="fi-sort" class="fs" onchange="applyFilters()">
+          <option value="name">Name A to Z</option>
+          <option value="experience">Most experienced</option>
+        </select>
+      </div>
+    </aside>
+
+    <main class="results-panel">
+      <div class="results-header">
+        <span id="results-count" class="results-count"></span>
+        <button class="btn btn-ghost btn-sm" id="filters-toggle" onclick="document.getElementById('filters-panel').classList.toggle('open')">Filters</button>
+      </div>
+      <div id="therapist-list" class="therapist-list"></div>
+      <div id="no-results" class="no-results" style="display:none">
+        <p>No therapists match your filters.</p>
+        <button class="btn btn-outline" onclick="clearFilters()">Clear filters</button>
+      </div>
+    </main>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section id="view-resources" class="view">
+  <div class="resources-wrap">
+    <div class="resources-hero">
+      <div class="hero-eyebrow">Sourced live from The Guardian</div>
+      <h1 class="resources-title">Mental Health Resources</h1>
+      <p class="resources-sub">Real articles and insights to support your wellbeing journey.</p>
+    </div>
+    <div class="resources-controls">
+      <div class="res-search-wrap">
+        <input type="text" id="res-search" class="fi res-search-input" placeholder="Search topics (e.g. anxiety, therapy, grief...)" oninput="debounceResources()" />
+      </div>
+      <div class="res-filters">
+        <div class="res-topics" id="res-topics">
+          <button class="topic-btn sel" onclick="setTopic(this,'mental health')">All</button>
+          <button class="topic-btn" onclick="setTopic(this,'anxiety')">Anxiety</button>
+          <button class="topic-btn" onclick="setTopic(this,'depression')">Depression</button>
+          <button class="topic-btn" onclick="setTopic(this,'therapy')">Therapy</button>
+          <button class="topic-btn" onclick="setTopic(this,'mindfulness')">Mindfulness</button>
+          <button class="topic-btn" onclick="setTopic(this,'trauma')">Trauma</button>
+          <button class="topic-btn" onclick="setTopic(this,'grief')">Grief</button>
+        </div>
+        <select id="res-sort" class="fs res-sort-select" onchange="fetchArticles()">
+          <option value="newest">Newest first</option>
+          <option value="relevance">Most relevant</option>
+          <option value="oldest">Oldest first</option>
+        </select>
+      </div>
+    </div>
+    <div id="articles-count" class="results-count" style="margin-bottom:16px"></div>
+    <div id="articles-grid" class="articles-grid"></div>
+  </div>
+</section>
+
+<!-- BOOKINGS -->
+<section id="view-bookings" class="view">
+  <div class="bookings-wrap">
+    <h1>My Bookings</h1>
+    <p class="bookings-note">Your bookings are stored privately in this browser session.</p>
+    <div id="bookings-list"></div>
+  </div>
+</section>
+
+<!-- CHAT -->
+<section id="view-chat" class="view">
+  <div class="chat-layout">
+    <div class="chat-head">
+      <button class="btn btn-ghost btn-sm" onclick="showView('browse')">Back</button>
+      <div class="chat-head-info" id="chat-head-info"></div>
+      <span class="privacy-badge">Encrypted</span>
+    </div>
+    <div class="chat-body" id="chat-body"></div>
+    <div class="chat-foot" id="chat-foot" style="display:none">
+      <input class="chat-input" id="chat-input" type="text" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendMsg()" />
+      <button class="btn btn-primary btn-sm" onclick="sendMsg()">Send</button>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING MODAL -->
+<div class="modal-overlay" id="booking-modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <h2>Book a Session</h2>
+    <p id="modal-sub"></p>
+
+    <div class="fg2">
+      <label class="fl2">Session length</label>
+      <div class="pill-row" id="dur-picker">
+        <button class="pill-btn" onclick="selPill(this,'dur','30 min')">30 min</button>
+        <button class="pill-btn" onclick="selPill(this,'dur','45 min')">45 min</button>
+        <button class="pill-btn" onclick="selPill(this,'dur','60 min')">60 min</button>
+        <button class="pill-btn" onclick="selPill(this,'dur','90 min')">90 min</button>
+      </div>
+    </div>
+
+    <div class="fg2">
+      <label class="fl2">Language</label>
+      <div class="pill-row" id="lang-picker">
+        <button class="pill-btn" onclick="selPill(this,'lang','Kinyarwanda')">Kinyarwanda</button>
+        <button class="pill-btn" onclick="selPill(this,'lang','French')">French</button>
+        <button class="pill-btn" onclick="selPill(this,'lang','English')">English</button>
+        <button class="pill-btn" onclick="selPill(this,'lang','Spanish')">Spanish</button>
+        <button class="pill-btn" onclick="selPill(this,'lang','Kiswahili')">Kiswahili</button>
+      </div>
+    </div>
+
+    <div class="fg2">
+      <label class="fl2">Day</label>
+      <div class="pill-row" id="day-picker"></div>
+    </div>
+
+    <div class="fg2">
+      <label class="fl2">Time</label>
+      <div class="time-picker">
+        <button class="time-slot" onclick="selTime(this)">9:00 AM</button>
+        <button class="time-slot" onclick="selTime(this)">10:00 AM</button>
+        <button class="time-slot" onclick="selTime(this)">11:00 AM</button>
+        <button class="time-slot" onclick="selTime(this)">1:00 PM</button>
+        <button class="time-slot" onclick="selTime(this)">2:00 PM</button>
+        <button class="time-slot" onclick="selTime(this)">3:00 PM</button>
+        <button class="time-slot" onclick="selTime(this)">4:00 PM</button>
+        <button class="time-slot" onclick="selTime(this)">5:00 PM</button>
+      </div>
+    </div>
+
+    <div id="modal-err" class="form-error" style="display:none"></div>
+    <button class="btn btn-primary btn-full" onclick="confirmBooking()">Confirm Booking</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- Stream Chat SDK -->
+<script src="https://cdn.jsdelivr.net/npm/stream-chat@8.17.0/dist/browser.full-bundle.min.js"></script>
+
+<!-- App scripts (config first so app.js can read CONFIG) -->
+<script src="config.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
