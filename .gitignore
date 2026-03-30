@@ -1,0 +1,13 @@
+# ── API Keys & Secrets ───────────────────────────────────────────
+# config.js contains your real API keys — never commit this file.
+# Copy config.example.js → config.js and fill in your keys locally.
+config.js
+
+# ── OS / Editor junk ─────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+
+# ── Node (if you ever add a build step) ──────────────────────────
+node_modules/
