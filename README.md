@@ -1,7 +1,10 @@
 # MindBridge — Private Online Therapy Platform
 
 An anonymous, browser-based therapy platform connecting users in Africa with licensed therapists.  
-Users can search, filter, and book sessions, read live mental health articles, and chat privately in real time — all without creating an account.
+Users can search, filter, and book sessions, read live mental health articles, and chat privately in real time — all without creating an account;  this was made to problem of bad streotypes around therapy and seeking mental health support in Africa.
+
+Live link: https://alineteta.me
+
 
 ---
 
@@ -18,9 +21,6 @@ mindbridge/
 ├── .gitignore          ← Excludes config.js and junk files
 └── README.md
 ```
-
-> **API keys** are submitted separately in the assignment comment section, not stored in this repository.
-
 ---
 
 ## External APIs Used
@@ -43,20 +43,6 @@ mindbridge/
 - **SDK**: `stream-chat@8.17.0` loaded from jsDelivr CDN
 
 ---
-
-## Run Locally
-
-No build step needed. You must serve via HTTP (not `file://`) because of the separate JS files.
-
-```bash
-# Python (simplest)
-python3 -m http.server 8080
-# then open http://localhost:8080
-
-# Or use any static file server
-npx serve .
-```
-
 ---
 
 ## Configure API Keys
@@ -108,19 +94,6 @@ bash deploy.sh 10.0.0.11 10.0.0.12 10.0.0.10 ubuntu
 3. Enables and reloads Nginx on each web server
 4. SSHes into Lb01 and writes a least-connection load-balancer config
 5. Runs 4 test requests to verify traffic is being balanced
-
-**Manual alternative if you prefer:**
-```bash
-# Copy files to each web server
-scp index.html style.css app.js config.js config.example.js ubuntu@WEB01_IP:/var/www/html/
-scp index.html style.css app.js config.js config.example.js ubuntu@WEB02_IP:/var/www/html/
-
-# Reload Nginx on each
-ssh ubuntu@WEB01_IP "sudo systemctl reload nginx"
-ssh ubuntu@WEB02_IP "sudo systemctl reload nginx"
-```
-
----
 
 ## Configure Load Balancer (Lb01)
 
