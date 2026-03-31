@@ -4,8 +4,6 @@ An anonymous, browser-based therapy platform connecting users in Africa with lic
 Users can search, filter, and book sessions, read live mental health articles, and chat privately in real time all without creating an account;  this was made in response to problem of bad streotypes around therapy and seeking mental health support in Africa.
 
 Live link: https://alineteta.me
-Demo:https://www.loom.com/share/7a17167489eb4c2182102f6859e9bc26
-
 
 ---
 
